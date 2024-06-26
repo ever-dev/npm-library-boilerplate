@@ -1,9 +1,10 @@
 {
-  "name": "@ever-dev/npm-library-boilerplate",
-  "version": "0.0.1",
-  "description": "NPM Library Boilerplate",
+  "name": "@ever-dev/browser-sdk-boilerplate",
+  "version": "0.0.0",
+  "description": "Browser SDK Boilerplate",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "umd": "dist/umd",
   "files": [
     "dist"
   ],
@@ -13,10 +14,8 @@
     "package:clean": "rm -rf dist",
     "package:copy": "cp package.json dist",
     "package:build": "yarn package:clean && rollup -c && yarn package:copy",
-    "package:release": "standard-version",
+    "package:release": "release-it",
     "package:publish": "yarn package:build && yarn publish",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "tsc": "tsc --pretty --noEmit",
     "prepare": "husky install",
     "validate": "npm-run-all --parallel lint tsc",
@@ -26,16 +25,12 @@
     "format": "npx prettier --config .prettierrc \"**/*.{css,scss,js,ts,md}\" --write",
     "format:test": "npx prettier --config .prettierrc \"**/*.{css,scss,js,ts,md}\" -l"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ever-dev/npm-library-boilerplate.git"
-  },
-  "author": "Ever Dev",
-  "license": "MIT",
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.2",
+    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/jest": "^29.2.4",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
@@ -61,16 +56,14 @@
     "jest-environment-jsdom": "^29.4.1",
     "lint-staged": "^13.1.0",
     "npm-run-all": "^4.1.5",
+    "release-it": "^17.4.0",
     "rollup": "^2.70.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.34.1",
-    "standard-version": "^9.5.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.4"
   },
-  "dependencies": {
-    "date-fns": "^2.29.3"
-  },
+  "dependencies": {},
   "peerDependencies": {},
   "resolutions": {}
 }

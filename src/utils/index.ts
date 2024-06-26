@@ -1,1 +1,1 @@
-export * from './formatters';
+export const returnHelloWorld = () => `Hello World`;

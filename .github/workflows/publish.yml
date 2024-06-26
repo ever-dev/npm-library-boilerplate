@@ -1,0 +1,54 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 'latest'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install Yarn
+      run: npm i -g yarn
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Upgrade package version
+      run: yarn package:release
+
+    - name: Publish
+      run: yarn package:publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    # - name: Copy umd files to S3
+    #   uses: arcezd/s3-cp-action@master
+    #   with:
+    #     args: --follow-symlinks
+    #   env:
+    #     AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     AWS_REGION: 'us-west-1'   # optional: defaults to us-east-1
+    #     SOURCE_DIR: 'dist/umd'      # optional: defaults to entire repository
+
+    # - name: Invalidate CloudFront
+    #   uses: chetan/invalidate-cloudfront-action@v2
+    #   env:
+    #     DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+    #     PATHS: "/index.html"
+    #     AWS_REGION: "us-east-1"
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
