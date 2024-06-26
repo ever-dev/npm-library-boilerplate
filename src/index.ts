@@ -1,10 +1,17 @@
-export * as Utils from './utils';
+import * as Utils from './utils';
 
-export const returnHelloWorld = () => `Hello World`;
+const returnHelloWorld = () => `Hello World`;
 
 let secretKey = '';
 
-export const init = (key: string) => {
+const init = (key: string) => {
   secretKey = key;
 };
-export const getKey = () => secretKey;
+const getKey = () => secretKey;
+
+export default {
+  Utils,
+  returnHelloWorld,
+  init,
+  getKey,
+};
