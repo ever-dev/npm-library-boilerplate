@@ -25,6 +25,11 @@ jobs:
     - name: Install dependencies
       run: yarn install
 
+    - name: Set git configuration
+      run: |
+        git config --local user.name "GIT BOT"
+        git config --local user.email "gitbot@donotreply.com"
+
     - name: Upgrade package version
       run: yarn package:release
 
