@@ -26,11 +26,15 @@ jobs:
       run: yarn install
 
     - name: Set git configuration
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git config --local user.name "GIT BOT"
-        git config --local user.email "gitbot@donotreply.com"
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
     - name: Upgrade package version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: yarn package:release
 
     - name: Publish
