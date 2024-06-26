@@ -1,6 +1,6 @@
 {
   "name": "@ever-dev/browser-sdk-boilerplate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Browser SDK Boilerplate",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
