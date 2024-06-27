@@ -1,5 +1,3 @@
-import * as Utils from './utils';
-
 const returnHelloWorld = () => `Hello World`;
 
 let secretKey = '';
@@ -10,7 +8,6 @@ const init = (key: string) => {
 const getKey = () => secretKey;
 
 export default {
-  Utils,
   returnHelloWorld,
   init,
   getKey,
