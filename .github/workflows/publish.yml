@@ -43,7 +43,7 @@ jobs:
     - name: Copy umd files to S3
       uses: arcezd/s3-cp-action@master
       with:
-        args: --follow-symlinks
+        args: --follow-symlinks --recursive
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
